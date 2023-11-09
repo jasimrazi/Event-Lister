@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "569282761179",
+    "project_id": "event-lister-2cf33",
+    "storage_bucket": "event-lister-2cf33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569282761179:android:c706d9bb554359183397fe",
+        "android_client_info": {
+          "package_name": "com.example.eventlister"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC30Gp8FEljq6ZsERPOaQTdl_e-ZS641Zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
