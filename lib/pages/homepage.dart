@@ -1,5 +1,5 @@
-import 'package:eventlister/loginpage.dart';
-import 'package:eventlister/loginstatus.dart';
+import 'package:eventlister/pages/loginpage.dart';
+import 'package:eventlister/functions/loginstatus.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,14 +13,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff8f8f8),
+      backgroundColor: Color(0xfff4f6f6),
       body: SafeArea(
+        // minimum: EdgeInsets.fromLTRB(0, 50, 0, 0),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: Color(0xffefefef),
@@ -41,6 +42,9 @@ class _HomePageState extends State<HomePage> {
                   cursorColor: Colors.black45,
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -48,13 +52,14 @@ class _HomePageState extends State<HomePage> {
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Container(
+                      margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
                       height: 300,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.white,
-                        // boxShadow: [
-                        //   BoxShadow(blurRadius: 15, color: Color(0xffc9c9c9)),
-                        // ],
+                        boxShadow: [
+                          BoxShadow(blurRadius: 15, color: Color(0xffc9c9c9)),
+                        ],
                       ),
                       child: Column(
                         children: [
@@ -214,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                      // margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
                     );
                   },
                 ),

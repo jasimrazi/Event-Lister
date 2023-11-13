@@ -1,5 +1,5 @@
-import 'package:eventlister/create.dart';
-import 'package:eventlister/loginpage.dart';
+import 'package:eventlister/pages/createpage.dart';
+import 'package:eventlister/pages/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
