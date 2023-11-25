@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool passwordVisible = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   String? errorMessage;
@@ -48,34 +49,72 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+              child: Text(
+                "Email",
+                style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
+              ),
+            ),
             TextField(
-              style: TextStyle(color: Color.fromARGB(255, 154, 56, 171)),
+              style: TextStyle(height: 1),
               controller: emailController,
               decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle:
-                      TextStyle(color: Color.fromARGB(255, 154, 56, 171)),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 154, 56, 171)))),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 38, 36, 36),
+                    ),
+                    borderRadius: BorderRadius.circular(10.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: Color.fromARGB(255, 38, 36, 36),
+                    )),
+              ),
             ),
             SizedBox(height: 16.0),
-            TextField(
-              style: TextStyle(color: Color.fromARGB(255, 154, 56, 171)),
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle:
-                      TextStyle(color: Color.fromARGB(255, 154, 56, 171)),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 154, 56, 171))),
-                  suffixIcon: new Icon(Icons.remove_red_eye,
-                    
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 10.0),
+              child: Text(
+                "Password",
+                style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
+              ),
+            ),
+            Container(
+              child: TextField(
+                style: TextStyle(height: 1),
+                controller: passwordController,
+                obscureText: passwordVisible,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 38, 36, 36),
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Color.fromARGB(255, 38, 36, 36),
+                      )),
+                  suffixIcon: IconButton(
+                    icon: Icon(passwordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        passwordVisible = !passwordVisible;
+                      });
+                    },
                   ),
+                ),
+              ),
             ),
             SizedBox(height: 8.0),
             if (errorMessage != null)
@@ -93,14 +132,15 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   signIn();
                 },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(255, 154, 56, 171),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
+                  backgroundColor: Color.fromARGB(255, 38, 36, 36),
                 ),
                 child: Text('Login',
                     style: TextStyle(
-                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Roboto Mono',
                       fontSize: 17,
                     )),
               ),
@@ -115,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(
-                  Color.fromARGB(255, 154, 56, 171),
+                  Color.fromARGB(255, 38, 36, 36),
                 )),
                 child: Text(
                   'Register Now',
