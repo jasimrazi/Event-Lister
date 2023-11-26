@@ -1,6 +1,4 @@
-import 'dart:ffi';
-import 'dart:ui';
-
+import 'package:eventlister/pages/forgotpage.dart';
 import 'package:eventlister/pages/signuppage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
   bool passwordVisible = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -123,6 +120,17 @@ class _LoginPageState extends State<LoginPage> {
                 errorMessage!,
                 style: TextStyle(color: Colors.red),
               ),
+            SizedBox(
+              height: 24.0,
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgotPasswordPage()));
+                },
+                child: Text('Forgot Password?')),
             SizedBox(
               height: 24.0,
             ),
