@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   bool passwordVisible = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -150,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
                 onPressed: () {
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => SignUp()));
                 },
                 style: ButtonStyle(
