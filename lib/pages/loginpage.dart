@@ -130,6 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(
                           builder: (context) => ForgotPasswordPage()));
                 },
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                  Color.fromARGB(255, 38, 36, 36),
+                )),
                 child: Text('Forgot Password?')),
             SizedBox(
               height: 24.0,
