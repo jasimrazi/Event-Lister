@@ -85,16 +85,14 @@ class _SignUpState extends State<SignUp> {
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 38, 36, 36),
+                      color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(10.0)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(
-                      width: 2,
-                      color: Color.fromARGB(255, 38, 36, 36),
-                    )),
+                    borderSide: BorderSide(color: Color(0xFFb7b7b7))),
+                filled: true,
+                fillColor: Color(0xFFe8e8e8),
               ),
             ),
             SizedBox(height: 15.0),
@@ -113,16 +111,14 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 38, 36, 36),
+                      color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(
-                        width: 2,
-                        color: Color.fromARGB(255, 38, 36, 36),
+                        color: Color(0xFFb7b7b7),
                       )),
                   suffixIcon: IconButton(
                     icon: Icon(passwordVisible
@@ -134,6 +130,8 @@ class _SignUpState extends State<SignUp> {
                       });
                     },
                   ),
+                  filled: true,
+                  fillColor: Color(0xFFe8e8e8),
                 ),
               ),
             ),
@@ -155,16 +153,14 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 38, 36, 36),
+                      color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(
-                        width: 2,
-                        color: Color.fromARGB(255, 38, 36, 36),
+                        color: Color(0xFFb7b7b7),
                       )),
                   suffixIcon: IconButton(
                     icon: Icon(passwordVisible
@@ -176,6 +172,8 @@ class _SignUpState extends State<SignUp> {
                       });
                     },
                   ),
+                  filled: true,
+                  fillColor: Color(0xFFe8e8e8),
                 ),
               ),
             ),
@@ -197,9 +195,9 @@ class _SignUpState extends State<SignUp> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  backgroundColor: Color.fromARGB(255, 38, 36, 36),
+                  backgroundColor: Color(0xFF3392ff),
                 ),
-                child: Text('Sign UP',
+                child: Text('Sign Up',
                     style: TextStyle(
                       fontFamily: 'Roboto Mono',
                       fontSize: 17,

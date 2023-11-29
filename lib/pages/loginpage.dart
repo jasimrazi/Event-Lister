@@ -62,16 +62,14 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 38, 36, 36),
+                      color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(10.0)),
+                filled: true,
+                fillColor: Color(0xFFe8e8e8),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(
-                      width: 2,
-                      color: Color.fromARGB(255, 38, 36, 36),
-                    )),
+                    borderSide: BorderSide(color: Color(0xFFb7b7b7))),
               ),
             ),
             SizedBox(height: 16.0),
@@ -90,16 +88,16 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 38, 36, 36),
+                      color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
+                  filled: true,
+                  fillColor: Color(0xFFe8e8e8),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(
-                        width: 2,
-                        color: Color.fromARGB(255, 38, 36, 36),
+                        color: Color(0xFFb7b7b7),
                       )),
                   suffixIcon: IconButton(
                     icon: Icon(passwordVisible
@@ -120,23 +118,25 @@ class _LoginPageState extends State<LoginPage> {
                 errorMessage!,
                 style: TextStyle(color: Colors.red),
               ),
-            SizedBox(
-              height: 24.0,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordPage()));
+                    },
+                    style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 38, 36, 36),
+                    )),
+                    child: Text('Forgot Password?')),
+              ],
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgotPasswordPage()));
-                },
-                style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                  Color.fromARGB(255, 38, 36, 36),
-                )),
-                child: Text('Forgot Password?')),
             SizedBox(
-              height: 24.0,
+              height: 8.0,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  backgroundColor: Color.fromARGB(255, 38, 36, 36),
+                  backgroundColor: Color(0xFF3392ff),
                 ),
                 child: Text('Login',
                     style: TextStyle(
@@ -161,22 +161,25 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 15.0,
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SignUp()));
-                },
-                style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                  Color.fromARGB(255, 38, 36, 36),
-                )),
-                child: Text(
-                  'Register Now',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 17,
-                  ),
-                )),
+            Container(
+              width: 10,
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignUp()));
+                  },
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(255, 38, 36, 36),
+                  )),
+                  child: Text(
+                    'Register Now',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 17,
+                    ),
+                  )),
+            ),
           ],
         ),
       ),

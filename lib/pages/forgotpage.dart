@@ -45,30 +45,55 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Enter your email to reset your password',
-                style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto Mono'),
-              ),
+            Text(
+              'Enter your email to reset your password',
+              style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
             ),
             SizedBox(height: 20.0),
             TextField(
+              style: TextStyle(),
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'Enter your email',
-              ),
+                  filled: true,
+                  fillColor: Color(0xFFe8e8e8),
+                  contentPadding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.transparent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Color(0xFFb7b7b7))),
+                  hintText: "test@gmail.com"),
             ),
             SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                passwordReset();
-              },
-              child: Text('Reset'),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        passwordReset();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        backgroundColor: Color(0xFF3392ff),
+                      ),
+                      child: Text('Reset',
+                          style: TextStyle(
+                            fontFamily: 'Roboto Mono',
+                            fontSize: 17,
+                          )),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
