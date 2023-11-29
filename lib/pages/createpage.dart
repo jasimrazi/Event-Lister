@@ -28,16 +28,30 @@ class _CreatePageState extends State<CreatePage> {
     final userEmail = user?.email ?? "No user";
 
     return Scaffold(
-      body: Center(
+      body:  Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("Signed in as: $userEmail"),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: signOut,
-              child: Text("Log Out"),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF0991BC),
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(9),
+                ),
+                elevation: 18,
+              ),
+              child: Text(
+                "Tech",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
+            
+
           ],
         ),
       ),
