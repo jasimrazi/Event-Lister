@@ -90,16 +90,17 @@ class _HomePageState extends State<HomePage> {
                                       padding:
                                           EdgeInsets.fromLTRB(10, 8, 10, 8),
                                       margin: EdgeInsets.all(13),
+                                      
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         color:
-                                            Color.fromARGB(255, 154, 56, 171),
+                                            Color(0xff3392ff),
                                       ),
                                       child: Text(
                                         "connect",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 10,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -108,13 +109,7 @@ class _HomePageState extends State<HomePage> {
                                       padding:
                                           EdgeInsets.fromLTRB(10, 0, 10, 8),
                                       margin: EdgeInsets.all(8),
-                                      child: Text(
-                                        "900 Interested",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                                      
                                     ),
                                   ],
                                 ),
@@ -135,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                                             Icons.location_on,
                                             size: 25,
                                             color:
-                                                Color.fromARGB(255, 78, 78, 78),
+                                                Color(0xFFb7b7b7),
                                           ),
                                           Text("  Bezier Stadium"),
                                         ],
@@ -154,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                                             Icons.schedule,
                                             size: 25,
                                             color:
-                                                Color.fromARGB(255, 78, 78, 78),
+                                                 Color(0xFFb7b7b7),
                                           ),
                                           Text(" July 17, 2022"),
                                         ],
@@ -173,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.fromLTRB(0, 2, 0, 2),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: Color.fromARGB(255, 51, 49, 49),
+                                    color: Color(0xff3392ff),
                                   ),
                                   child: TextButton(
                                     style: ButtonStyle(
@@ -196,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: Color.fromARGB(255, 51, 49, 49),
+                                    color: Color(0xFFb7b7b7),
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(5),
@@ -206,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                                   style: ButtonStyle(
                                     foregroundColor:
                                         MaterialStateProperty.all<Color>(
-                                      Color.fromARGB(255, 51, 49, 49),
+                                      Color(0xFFb7b7b7),
                                     ),
                                   ),
                                   onPressed: () {},
@@ -237,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                       LoginStatus())); // Handle FAB button press
         },
         child: Icon(Icons.playlist_add),
-        backgroundColor: Color(0xff333131),
+        backgroundColor: Color(0xff3392ff),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
