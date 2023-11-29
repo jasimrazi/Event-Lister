@@ -47,9 +47,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              'Enter your email to reset your password',
-              style: TextStyle(fontSize: 18.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Enter your email to reset your password',
+                style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto Mono'),
+              ),
             ),
             SizedBox(height: 20.0),
             TextField(
