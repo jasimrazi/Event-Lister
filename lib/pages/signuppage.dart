@@ -100,7 +100,7 @@ class _SignUpState extends State<SignUp> {
               padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 10.0),
               child: Text(
                 "Password",
-                style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
+                style: TextStyle(fontSize: 15),
               ),
             ),
             Container(
@@ -142,7 +142,7 @@ class _SignUpState extends State<SignUp> {
               padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 10.0),
               child: Text(
                 "Confirm Password",
-                style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
+                style: TextStyle(fontSize: 15),
               ),
             ),
             Container(
@@ -199,7 +199,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 child: Text('Sign Up',
                     style: TextStyle(
-                      fontFamily: 'Roboto Mono',
+                      
                       fontSize: 17,
                     )),
               ),

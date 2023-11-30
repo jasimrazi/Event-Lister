@@ -48,7 +48,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           children: <Widget>[
             Text(
               'Enter your email to reset your password',
-              style: TextStyle(fontSize: 15, fontFamily: 'Roboto Mono'),
+              style: TextStyle(fontSize: 15),
             ),
             SizedBox(height: 20.0),
             TextField(
@@ -87,7 +87,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       ),
                       child: Text('Reset',
                           style: TextStyle(
-                            fontFamily: 'Roboto Mono',
+                            
                             fontSize: 17,
                           )),
                     ),

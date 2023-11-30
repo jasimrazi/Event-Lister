@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Event Lister',
-      theme: ThemeData(fontFamily: GoogleFonts.anekMalayalam().fontFamily),
+      theme: ThemeData(fontFamily: GoogleFonts.dmSans().fontFamily),
       routes: {
         '/home': (context) => HomePage(),
         // Add other routes as needed
