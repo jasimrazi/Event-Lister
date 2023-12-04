@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               children: [
                                 Stack(
-                                  alignment: Alignment.topLeft,
+                                  // alignment: Alignment.topLeft,
                                   children: [
                                     Container(
                                       height: 150,
@@ -109,36 +109,35 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            margin: EdgeInsets.fromLTRB(
-                                                10, 0, 0, 0),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: Color(0xff3392ff),
-                                            ),
-                                            child: Text(
-                                              "${eventData['Club'] ?? ''}",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
+                                    Positioned(
+                                      top: 10,
+                                      left: 10,
+                                      child: Container(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                color: Color(0xff3392ff),
+                                              ),
+                                              child: Text(
+                                                "${eventData['Club'] ?? ''}",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 60,
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              height: 60,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

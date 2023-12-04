@@ -16,15 +16,21 @@ class _SignUpState extends State<SignUp> {
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
   String? errorMessage;
+  bool isLoading = false;
 
   Future signUp() async {
     if (passwordController.text.trim() ==
         confirmpasswordController.text.trim()) {
       try {
+        setState(() {
+          isLoading = true;
+        });
+
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
+
         // If signup is successful, navigate to another screen (e.g., Home screen)
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginStatus()));
@@ -47,6 +53,10 @@ class _SignUpState extends State<SignUp> {
             errorMessage = 'An error occurred. Please try again later.';
           });
         }
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     } else {
       setState(() {
@@ -188,8 +198,8 @@ class _SignUpState extends State<SignUp> {
               width: MediaQuery.of(context).size.width,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  signUp();
+                onPressed: () async {
+                  await signUp();
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -197,11 +207,16 @@ class _SignUpState extends State<SignUp> {
                   ),
                   backgroundColor: Color(0xFF3392ff),
                 ),
-                child: Text('Sign Up',
-                    style: TextStyle(
-                      
-                      fontSize: 17,
-                    )),
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
               ),
             ),
             SizedBox(
@@ -209,8 +224,8 @@ class _SignUpState extends State<SignUp> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
               style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(

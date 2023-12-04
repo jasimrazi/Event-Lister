@@ -1,3 +1,4 @@
+import 'package:eventlister/pages/createpage.dart';
 import 'package:eventlister/pages/forgotpage.dart';
 import 'package:eventlister/pages/signuppage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,25 +14,49 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   String? errorMessage;
+  bool isLoading = false;
 
   Future<void> signIn() async {
+    if (!mounted) {
+      return; // Do nothing if the widget is disposed
+    }
+
+    setState(() {
+      isLoading = true;
+      errorMessage = null; // Reset error message
+    });
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
+      if (mounted) {
+        // Only navigate if the widget is still mounted
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CreatePage()), // Replace with your next page
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        setState(() {
-          errorMessage = e.code;
-        });
-      } else {
+      if (mounted) {
+        // Only update the state if the widget is still mounted
         setState(() {
           errorMessage = e.code;
         });
       }
+    } finally {
+      if (mounted) {
+        // Only update the state if the widget is still mounted
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
+
 
   @override
   void dispose() {
@@ -122,17 +147,19 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordPage()));
-                    },
-                    style: ButtonStyle(
-                        foregroundColor: MaterialStateProperty.all<Color>(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage()));
+                  },
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 38, 36, 36),
-                    )),
-                    child: Text('Forgot Password?')),
+                    ),
+                  ),
+                  child: Text('Forgot Password?'),
+                ),
               ],
             ),
             SizedBox(
@@ -142,20 +169,18 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  signIn();
-                },
+                onPressed: isLoading ? null : signIn,
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   backgroundColor: Color(0xFF3392ff),
                 ),
-                child: Text('Login',
-                    style: TextStyle(
-                      
-                      fontSize: 17,
-                    )),
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                    : Text('Login', style: TextStyle(fontSize: 17)),
               ),
             ),
             SizedBox(
@@ -164,21 +189,26 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               width: 10,
               child: TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
-                  },
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SignUp())); // Replace with your SignUp page
+                },
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(
                     Color.fromARGB(255, 38, 36, 36),
-                  )),
-                  child: Text(
-                    'Register Now',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 17,
-                    ),
-                  )),
+                  ),
+                ),
+                child: Text(
+                  'Register Now',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 17,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
