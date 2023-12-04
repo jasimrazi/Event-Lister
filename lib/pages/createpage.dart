@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class CreatePage extends StatefulWidget {
@@ -22,6 +25,7 @@ class _CreatePageState extends State<CreatePage> {
 
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+  PickedFile? _image;
 
   @override
   void dispose() {
@@ -48,6 +52,26 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
+  Future<String?> uploadImageToStorage() async {
+    if (_image == null) return null;
+
+    final storage = FirebaseStorage.instance;
+    final imageRef = storage.ref().child('event_images/${DateTime.now()}.png');
+
+    final metadata = SettableMetadata(
+      contentType: 'image/png',
+    );
+
+    try {
+      await imageRef.putFile(File(_image!.path), metadata);
+      final imageUrl = await imageRef.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      print('Error uploading image: $e');
+      return null;
+    }
+  }
+
   Future addEvent(
     String eventName,
     String description,
@@ -55,10 +79,13 @@ class _CreatePageState extends State<CreatePage> {
     String regLink,
     String club,
     DateTime eventDateTime,
+    PickedFile? image,
   ) async {
     final formattedDate = DateFormat('yyyy-MM-dd').format(eventDateTime);
     final formattedTime =
         '${eventDateTime.hour.toString().padLeft(2, '0')}:${eventDateTime.minute.toString().padLeft(2, '0')}';
+
+    final imageUrl = await uploadImageToStorage();
 
     await FirebaseFirestore.instance.collection('Events').add({
       'Event name': eventName,
@@ -68,6 +95,7 @@ class _CreatePageState extends State<CreatePage> {
       'Club': club,
       'Event Date': formattedDate,
       'Event Time': formattedTime,
+      'Image URL': imageUrl,
     });
 
     showSnackBar('Event added successfully', context);
@@ -79,6 +107,7 @@ class _CreatePageState extends State<CreatePage> {
     setState(() {
       selectedDate = DateTime.now();
       selectedTime = TimeOfDay.now();
+      _image = null;
     });
   }
 
@@ -113,6 +142,16 @@ class _CreatePageState extends State<CreatePage> {
       setState(() {
         selectedTime = picked;
       });
+  }
+
+  Future<void> _getImage() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = pickedFile;
+      });
+    }
   }
 
   @override
@@ -264,6 +303,23 @@ class _CreatePageState extends State<CreatePage> {
               )
             ],
           ),
+          SizedBox(height: 16.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: _getImage,
+                child: Text('Pick Image'),
+              ),
+              SizedBox(width: 16.0),
+              if (_image != null)
+                Image.file(
+                  File(_image!.path),
+                  height: 100,
+                  width: 100,
+                ),
+            ],
+          ),
           SizedBox(height: 50.0),
           ElevatedButton(
             onPressed: () {
@@ -280,6 +336,7 @@ class _CreatePageState extends State<CreatePage> {
                   selectedTime.hour,
                   selectedTime.minute,
                 ),
+                _image,
               );
             },
             style: ElevatedButton.styleFrom(

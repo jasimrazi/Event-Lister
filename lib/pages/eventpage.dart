@@ -61,16 +61,17 @@ class _EventPageState extends State<EventPage> {
                       ),
                       SizedBox(height: 20),
                       Container(
+                        padding: EdgeInsets.all(10),
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        height: 200,
+                        height: 400,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
                           image: DecorationImage(
                             image: NetworkImage(
-                              'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1420&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                              eventDetails['Image URL'] ?? '',
                             ),
-                            fit: BoxFit.cover,
+                            // fit: BoxFit.cover,
                           ),
                         ),
                       ),
