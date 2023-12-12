@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('Events')
+                      .orderBy('Timestamp', descending: true)
                       .snapshots(),
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
@@ -93,7 +94,6 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               children: [
                                 Stack(
-                                  // alignment: Alignment.topLeft,
                                   children: [
                                     Container(
                                       height: 150,

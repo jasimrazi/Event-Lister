@@ -105,6 +105,7 @@ class _CreatePageState extends State<CreatePage> {
         'Event Date': formattedDate,
         'Event Time': formattedTime,
         'Image URL': imageUrl,
+        'Timestamp': FieldValue.serverTimestamp(),
       });
 
       showSnackBar('Event added successfully', context);
